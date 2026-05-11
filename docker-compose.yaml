@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build: ./frontend
+    networks:
+      - caddy_network
+    labels:
+      # Caddy sees this and handles EVERYTHING (SSL + Routing)
+      caddy: lfwells-kit328-react-test.gctrg-platform.cloud.edu.au
+      caddy.reverse_proxy: "{{upstreams 3000}}"
+
+networks:
+  caddy_network:
+    external: true
