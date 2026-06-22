@@ -9,5 +9,6 @@
             "moby": true
         }
     },
+    "postCreateCommand": "git config --global filter.lfs.required false && git config --global filter.lfs.smudge false",
     "initializeCommand": "docker network create caddy_network || true"
 }
