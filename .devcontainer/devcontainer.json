@@ -2,7 +2,7 @@
     "name": "KIT328 Codespace",
     "dockerComposeFile": "../docker-compose.yaml",
     "service": "frontend",
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "${localWorkspaceFolder}",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "version": "latest",
