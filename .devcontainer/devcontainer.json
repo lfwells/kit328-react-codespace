@@ -9,6 +9,12 @@
             "moby": true
         }
     },
-    "postCreateCommand": "git config --global filter.lfs.required false && git config --global filter.lfs.smudge false",
+    // This tells Git to ignore ALL push hooks system-wide inside the container
+    "containerEnv": {
+        "GIT_ALLOW_PROTOCOL": "http:https",
+        "GIT_EXEC_PATH": "/usr/libexec/git-core"
+    },
+    "postCreateCommand": "git config --global core.hooksPath /dev/null",
+    //this sets up the docker netwrosk
     "initializeCommand": "docker network create caddy_network || true"
 }
