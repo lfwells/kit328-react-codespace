@@ -2,17 +2,20 @@
     "name": "KIT328 Codespace",
     "dockerComposeFile": "../docker-compose.yaml",
     "service": "frontend",
-    "workspaceFolder": "/app",
+    
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "version": "latest",
             "moby": true
-        }
+        },
     },
-    // This tells Git to ignore ALL push hooks system-wide inside the container
-    "containerEnv": {
-        "GIT_ALLOW_PROTOCOL": "http:https",
-        "GIT_EXEC_PATH": "/usr/libexec/git-core"
+    "customizations": {
+        "vscode": {
+        "settings": {
+            // Tells VS Code to look at the standard system path across standard Linux environments
+            "git.path": "git"
+        }
+        }
     },
     "postCreateCommand": "git config --global core.hooksPath /dev/null",
     //this sets up the docker netwrosk

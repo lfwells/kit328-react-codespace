@@ -4,8 +4,7 @@ services:
     networks:
       - caddy_network
     labels:
-      # Caddy sees this and handles EVERYTHING (SSL + Routing)
-      caddy: todo-your-repo-name-here.gctrg-platform.cloud.edu.au
+      caddy: ${REPO_NAME}
       caddy.reverse_proxy: "{{upstreams 3000}}"
 
 networks:
