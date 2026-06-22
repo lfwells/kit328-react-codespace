@@ -1,0 +1,20 @@
+name: Deployment Server Status
+
+on:
+  repository_dispatch:
+    types: [ deployment_result ]
+
+jobs:
+  display-deployment-results:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Server Output Logs
+        run: |
+          echo "=== DEPLOYMENT LOGS ==="
+          echo "${{ github.event.client_payload.logs }}"
+          
+      - name: Check Deployment Status
+        if: github.event.client_payload.status == 'failure'
+        run: |
+          echo "❌ Server deployment failed validation or container assembly error."
+          exit 1

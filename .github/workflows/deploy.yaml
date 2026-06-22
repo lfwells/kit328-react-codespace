@@ -1,18 +1,17 @@
-name: Remote Deploy to Nectar
+name: Trigger Assignment Deployment
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
+  notify-deployment-server:
     runs-on: ubuntu-latest
     steps:
-      - name: Execute Remote Deployment Script
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Send Deployment Signal
+        uses: peter-evans/repository-dispatch@v3
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            ./deploy.sh "${{ github.repository_owner }}" "${{ github.event.repository.clone_url }}"
+          token: ${{ secrets.CLASSROOM_DEPLOYMENT_TOKEN }}
+          repository: UTAS-ICT-Lindsay/kit328-central-marking-repo
+          event-type: student_push
+          client-payload: '{"repo": "${{ github.repository }}", "actor": "${{ github.actor }}"}'

@@ -5,7 +5,7 @@ services:
       - caddy_network
     labels:
       # Caddy sees this and handles EVERYTHING (SSL + Routing)
-      caddy: lfwells-kit328-react-test.gctrg-platform.cloud.edu.au
+      caddy: todo-your-repo-name-here.gctrg-platform.cloud.edu.au
       caddy.reverse_proxy: "{{upstreams 3000}}"
 
 networks:
