@@ -3,10 +3,12 @@ services:
     build: ./frontend
     networks:
       - caddy_network
+    ports:
+      - "8080:3000"
     labels:
       caddy: ${REPO_NAME}
       caddy.reverse_proxy: "{{upstreams 3000}}"
 
 networks:
   caddy_network:
-    external: true
+    external: false
